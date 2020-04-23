@@ -6,7 +6,7 @@ The most advanced model of a pandemic explored here is the one created by Leonar
 
 A fully connected NN given some manually chosen parameters can, and an LSTM NN using the whole time series attempt to solve the first task. Both of them are created using Keras.
 
-A simple logistic regression solves the second one. It is coded from scratch using only numpy.
+A simple logistic regression solves the second one. It is coded from scratch using only numpy and uses gradient descend.
 
 The results, some comments and the code calling the different models I have implemented can be found in main.py
 Pandemic modelling can be found in pandemicsim.py
