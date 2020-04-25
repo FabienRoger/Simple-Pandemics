@@ -1,20 +1,23 @@
 from keras import layers
 from keras.layers import Input, Dense
 from keras.models import Model
+from keras.optimizers import Adam
 import keras.backend as K
 
 from tools import *
 
 class NN:
-    def __init__(self,layers_dim,name = 'nn',lin_out = True):
+    def __init__(self,layers_dim,name = 'nn',lin_out = True,learning_rate = 0.001):
         self.model = self.create_model(layers_dim,lin_out)
         self.shape = layers_dim
         self.name = name
         #metric might seem weird, but it ahs to be so because we are attemting to predict a value, not a probability
+    
+        opt = Adam(learning_rate=learning_rate)        
         if lin_out or True:
-            self.model.compile(optimizer = "adam", loss = "mean_squared_error", metrics = [abs_diff])
+            self.model.compile(optimizer = opt, loss = "mean_squared_error", metrics = [abs_diff])
         else:
-            self.model.compile(optimizer = "adam", loss = "binary_crossentropy", metrics = [abs_diff])
+            self.model.compile(optimizer = opt, loss = "binary_crossentropy", metrics = [abs_diff])
     
     def create_model(self,layers_dim,lin_out): 
         #layers_dim include output and input
@@ -39,7 +42,7 @@ class NN:
         except:
             return
     
-    def fit(self,X,Y,learning_rate = 0.05, iteration=10, print_losses=False):
+    def fit(self,X,Y, iteration=10, print_losses=False):
         self.model.fit(x = X, y = Y, epochs = iteration, batch_size = 100, verbose=2 if print_losses else 0)
         self.model.save_weights('models/weights of '+self.name+ ' '+str(self.shape)+".nn")
     

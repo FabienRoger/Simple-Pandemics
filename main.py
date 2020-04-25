@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import numpy as np
 
 from pandemicsim import *
@@ -27,7 +29,7 @@ Y = np.load("data/complexSim NN Train2Y.npy")
 print(X.shape,Y.shape)
 
 nn.load()
-nn.fit(X,Y,iteration=100, learning_rate=0.5,print_losses=True)
+nn.fit(X,Y,iteration=100,print_losses=True)
 print("loss on test set = {:.4f} ".format(nn.loss(X,Y)))
 print("accuracy on test set = {:.4f} ".format(nn.accuracy(X,Y)))
 
@@ -40,7 +42,7 @@ print("accuracy on dev set = {:.4f} ".format(nn.accuracy(Xdev,Ydev)))
 
 Ypred = nn.predict(Xdev)
 for i in range(Ydev.shape[1]):
-    print("average distance to true value n°{:} : {:.4f} "
+    print("average distance to true value nÂ°{:} : {:.4f} "
           .format(i,np.mean(np.abs(Ypred[:,i] - Ydev[:,i]))))
 
 #The SEIQRDC model
@@ -69,7 +71,7 @@ Y = np.load("data/complexSim LSTM Train1Y.npy")
 print(X.shape,Y.shape)
 
 nn.load()
-nn.fit(X,Y,iteration=10, learning_rate=0.5,print_losses=True)
+nn.fit(X,Y,iteration=10,print_losses=True)
 print("loss on test set = {:.4f} ".format(nn.loss(X,Y)))
 print("accuracy on test set = {:.4f} ".format(nn.accuracy(X,Y)))
 
@@ -97,7 +99,7 @@ Y = np.load("data/complexSim NN Train1Y.npy")
 print(X.shape,Y.shape)
 
 nn.load()
-nn.fit(X,Y,iteration=100, learning_rate=0.5,print_losses=True)
+nn.fit(X,Y,iteration=100,print_losses=True)
 print("loss on test set = {:.4f} ".format(nn.loss(X,Y)))
 print("accuracy on test set = {:.4f} ".format(nn.accuracy(X,Y)))
 
@@ -152,7 +154,7 @@ print(np.mean(Y))
 lo = Logistic(2)
 print("accuracy before training = {:.4f} ".format(lo.accuracy(X,Y)))
 
-lo.fit(X,Y,iteration=30000, learning_rate=0.4,print_losses=True)
+lo.fit(X,Y,iteration=30000,print_losses=True)
 print("accuracy after training = {:.4f} ".format(lo.accuracy(X,Y)))
 
 
